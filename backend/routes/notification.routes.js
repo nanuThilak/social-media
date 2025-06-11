@@ -1,13 +1,17 @@
-const {
+import {
   getNotificationController,
   deleteAllNotificationController,
   deleteNotificationController
-} = require("../controllers/notificationControllers");
-const { protectRoute } = require("../middleware/ProtectRoute");
+} from"../controllers/notificationControllers.js"
+import { protectRoute } from"../middleware/ProtectRoute.js"
+import express from "express"
 
-const router = require("express").Router();
+const router = express.Router()
+
+
+
 router.get("/", protectRoute, getNotificationController);
 router.delete("/", protectRoute, deleteAllNotificationController);
 router.delete("/:id", protectRoute, deleteNotificationController);
 
-module.exports = router;
+export default router;

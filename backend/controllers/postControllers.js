@@ -1,8 +1,7 @@
-const UserModel = require("../models/User.model");
-const { v2 } = require("cloudinary");
-const PostModel = require("../models/Post.model");
-const NotificationModel = require("../models/Notification.model");
-
+import UserModel from "../models/User.model.js"
+import PostModel from "../models/Post.model.js"
+import { v2 } from "cloudinary";
+import NotificationModel from "../models/Notification.model.js";
 const createPost = async (req, res) => {
   try {
     const { text } = req.body;
@@ -195,7 +194,7 @@ const getUserPosts = async (req, res) => {
   }
 };
 
-module.exports = {
+export{
   createPost,
   deletePost,
   likeDislikePost,

@@ -1,5 +1,5 @@
-const UserModel = require("../models/User.model");
-const jwt = require("jsonwebtoken");
+import UserModel from "../models/User.model.js";
+import jwt from "jsonwebtoken";
 
 const protectRoute = async (req, res, next) => {
   try {
@@ -12,7 +12,7 @@ const protectRoute = async (req, res, next) => {
     if (!decoded) {
       return res.status(401).json({ error: "uauthorized", success: false });
     }
-   
+
     const user = await UserModel.findOne({ _id: decoded.userId });
     if (!user) {
       return res.status(404).json({ error: "user not found" });
@@ -25,8 +25,6 @@ const protectRoute = async (req, res, next) => {
   }
 };
 
-module.exports = {
+export {
   protectRoute,
 };
-
-

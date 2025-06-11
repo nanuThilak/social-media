@@ -1,4 +1,4 @@
-const {
+import {
   createPost,
   likeDislikePost,
   commentPost,
@@ -7,10 +7,11 @@ const {
   getLikedPosts,
   getFollowingPosts,
   getUserPosts,
-} = require("../controllers/postControllers");
-const { protectRoute } = require("../middleware/ProtectRoute");
+} from"../controllers/postControllers.js"
+import { protectRoute } from"../middleware/ProtectRoute.js"
 
-const router = require("express").Router();
+import express from "express"
+const router = express.Router()
 
 router.get("/likes/:id", protectRoute, getLikedPosts);
 router.get("/following", protectRoute, getFollowingPosts)
@@ -20,4 +21,4 @@ router.get("/user/:userName", protectRoute, getUserPosts)
 router.post("/like/:id", protectRoute, likeDislikePost);
 router.post("/comment/:id", protectRoute, commentPost);
 router.delete("/delete/:id", protectRoute, deletePost);
-module.exports = router;
+export default router;

@@ -1,6 +1,6 @@
-const UserModel = require("../models/User.model");
-const bcrypt = require("bcryptjs");
-const jsonWebToken = require("jsonwebtoken");
+import UserModel from "../models/User.model.js"
+import bcrypt from "bcryptjs"
+import jsonWebToken from "jsonwebtoken"
 
 const signupController = async (req, res) => {
   try {
@@ -99,7 +99,7 @@ const getUser = async (req, res) => {
 
 
 
-module.exports = {
+export  {
   signupController,
   loginController,
   logoutController,

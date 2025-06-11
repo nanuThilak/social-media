@@ -1,12 +1,15 @@
-const express = require("express");
-const connectDB = require("./config/db");
-const cookieParser = require("cookie-parser");
-const apiRouter = require("./routes");
+import express from "express"
+import connectDB from "./config/db.js";
+import cookieParser from "cookie-parser";
+import apiRouter from "./routes/index.js"
+import bodyParser from "body-parser";
+import {v2} from "cloudinary"
+import dotenv from  "dotenv"
+import cors from "cors"
+import path from "path"
+dotenv.config()
 const PORT = process.env.PORT || 4000;
-const bodyParser = require("body-parser");
-const {v2} = require("cloudinary")
-require("dotenv").config();
-const cors = require("cors");
+const __dirname = path.resolve()
 const app = express();
 connectDB();
 v2.config({
@@ -20,7 +23,29 @@ app.use(cookieParser());
 app.use(cors())
 app.use(bodyParser.json());
 app.use("/api", apiRouter);
+if (process.env.NODE_ENV === "production") {
+  try {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+if (process.env.NODE_ENV === "production") {
+  try {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
 app.listen(PORT, () => console.log(`server was started on ${PORT} PORT`));
 
 

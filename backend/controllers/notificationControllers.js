@@ -1,4 +1,4 @@
-const NotificationModel = require("../models/Notification.model");
+import NotificationModel from "../models/Notification.model.js"
 
 const getNotificationController = async (req, res) => {
   try {
@@ -50,7 +50,7 @@ const deleteNotificationController = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   getNotificationController,
   deleteAllNotificationController,
   deleteNotificationController,

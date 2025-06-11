@@ -1,15 +1,17 @@
-const {
+import {
   getUserProfileController,
   getSuggestedProfileController,
   followUnfollowUserController,
   updateUserProfileController,
-} = require("../controllers/userControllers");
-const { protectRoute } = require("../middleware/ProtectRoute");
-const router = require("express").Router();
+} from "../controllers/userControllers.js";
+import { protectRoute } from "../middleware/ProtectRoute.js";
+import express from "express";
 
+const router = express.Router();
 router.get("/profile/:userName", protectRoute, getUserProfileController);
 router.get("/suggested", protectRoute, getSuggestedProfileController);
 router.post("/follow/:id", protectRoute, followUnfollowUserController);
 router.put("/update", protectRoute, updateUserProfileController);
 
-module.exports = router;
+export default router;
+

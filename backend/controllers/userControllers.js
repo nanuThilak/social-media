@@ -1,7 +1,7 @@
-const UserModel = require("../models/User.model");
-const NotificationModel = require("../models/Notification.model");
-const bcrypt = require("bcryptjs");
-const { v2 } = require("cloudinary");
+import UserModel from "../models/User.model.js";
+import { v2 } from "cloudinary";
+import NotificationModel from "../models/Notification.model.js";
+import bcrypt from "bcryptjs";
 const getUserProfileController = async (req, res) => {
   try {
     const { userName } = req.params;
@@ -163,7 +163,7 @@ const updateUserProfileController = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
-module.exports = {
+export {
   getUserProfileController,
   getSuggestedProfileController,
   followUnfollowUserController,

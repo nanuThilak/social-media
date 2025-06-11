@@ -1,10 +1,11 @@
-const router = require("express").Router();
-const authRoutes = require("./auth.routes");
-const userRoutes = require("./user.routes")
-const postRoutes = require("./post.routes")
-const notificationRoutes = require("./notification.routes")
+import authRoutes from "./auth.routes.js"
+import userRoutes from "./user.routes.js"
+import postRoutes from "./post.routes.js"
+import notificationRoutes from "./notification.routes.js"
+import express from "express"
+const router = express.Router()
 router.use("/auth", authRoutes);
 router.use("/user", userRoutes)
 router.use("/post", postRoutes)
 router.use("/notification", notificationRoutes)
-module.exports = router;
+export default router;
